@@ -201,11 +201,11 @@ main = Main.new
 
 $matieres << Matiere.new("French", 			  4)
 $matieres << Matiere.new("English", 		  2)
-$matieres << Matiere.new("Espagnol", 		  2)
+$matieres << Matiere.new("Spanish", 		  2)
 $matieres << Matiere.new("Technology", 		  12)
 $matieres << Matiere.new("Mathematics", 	  4)
 $matieres << Matiere.new("Chemistry",	 	  4)
-$matieres << Matiere.new("History-Geography", 2)
+$matieres << Matiere.new("History/Geography", 2)
 $matieres << Matiere.new("Sport", 			  2)
 
 
