@@ -1,3 +1,7 @@
+require_relative "Matiere"
+require_relative "Controle"
+require_relative "Eleve"
+
 class Main
 
 	def self.menu_principal
