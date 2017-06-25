@@ -29,6 +29,29 @@ class Eleve
 		@moyenne_generale = 0.0
 	end
 
+	def ajouter_controle
+		puts "Select subject from the list: "
+		i = 0                                     #peut etre ajouter l'option 0 pour add/edit des matieres
+	    $matieres.each do |matiere|
+	    	i = i + 1
+	      	puts "#{i} - #{matiere.nom}"
+	    end
+	    puts "99 - Quit"
+
+	    print "Subject: "
+	    matiere = $matieres[gets.chomp.to_i-1]
+
+	    print "Your grade: "
+	    note = gets.chomp.to_f
+
+	    print "Coefficient: "
+	    coef = gets.chomp
+
+		controle = Controle.new(matiere, note, coef)
+		puts "-> #{controle.matiere.nom} #{controle.note}/20 (x#{controle.coef})"
+		@controles << controle
+	end
+
 	def calculer_moyenne_matiere(matiere)
 		addition_notes = 0.0
 		addition_coefs = 0.0
@@ -77,11 +100,11 @@ class Main
 		if choix == 1
 			Main.modifier_matieres
 		elsif choix == 2
-			eleve.ajouter_note
+			$eleve.ajouter_controle
 		elsif choix == 3
-			eleve.calculer_moyenne_matiere
+			$eleve.calculer_moyenne_matiere
 		elsif choix == 4
-			eleve.calculer_moyenne_generale
+			$eleve.calculer_moyenne_generale
 		elsif choix == 99
 			puts "Bye !"
 		else
@@ -103,7 +126,7 @@ class Main
 			i = 0
 	    	$matieres.each do |matiere|
 	    		i = i + 1
-	      		puts "#{i} - Edit #{matiere.nom} (x#{matiere.coef})"
+	      		puts "#{i} - Edit #{matiere.nom} (x#{matiere.coef})" #TODO: pouvoir supr une matiere
 	    	end
 	    	puts "99 - Quit"
 
