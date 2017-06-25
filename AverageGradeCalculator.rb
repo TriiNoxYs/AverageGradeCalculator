@@ -75,12 +75,14 @@ class Eleve
 		moyenne_matiere = 0.0
 
 		@controles.each do |controle|
-			addition_notes += controle.note * controle.coef
-			addition_coefs += controle.coef
+			if controle.matiere == matiere
+				addition_notes += controle.note * controle.coef
+				addition_coefs += controle.coef
+			end
 		end
 
 		moyenne_matiere += addition_notes / addition_coefs #peut etre supr et passé direct en arg
-		@moyennes[:matiere] = moyenne_matiere
+		@moyennes[matiere] = moyenne_matiere
 
 		#return moyenne_matiere
 		puts "Average grade in #{matiere.nom}: #{moyenne_matiere}"
@@ -89,7 +91,7 @@ class Eleve
 
 	def calculer_moyenne_generale
 		addition_moyennes = 0.0
-		addition_coefs_moyennes = 0
+		addition_coefs_moyennes = 0.0
 
 		@moyennes.each do |matiere, moyenne|
 			addition_moyennes += moyenne * matiere.coef
@@ -98,7 +100,8 @@ class Eleve
 
 		@moyenne_generale = addition_moyennes / addition_coefs_moyennes
 
-		return @moyenne_generale #pas utile car derniere variable retournée
+		puts "General average grade: #{@moyenne_generale}"
+		Main.menu_principal
 	end
 
 end
@@ -168,7 +171,7 @@ class Main
 	    print "Name: "
 	    nom = gets.chomp
 	    print "Coefficient: "
-	    coef = gets.chomp.to_i
+	    coef = gets.chomp.to_f
 
 	    matiere = Matiere.new(nom, coef)
 	    puts "\nSubject created: #{matiere.nom} (x#{matiere.coef})"
@@ -196,9 +199,14 @@ end
 $matieres = []
 main = Main.new
 
-
-francais = Matiere.new("Français", 2)
-$matieres << francais
+$matieres << Matiere.new("French", 			  4)
+$matieres << Matiere.new("English", 		  2)
+$matieres << Matiere.new("Espagnol", 		  2)
+$matieres << Matiere.new("Technology", 		  12)
+$matieres << Matiere.new("Mathematics", 	  4)
+$matieres << Matiere.new("Chemistry",	 	  4)
+$matieres << Matiere.new("History-Geography", 2)
+$matieres << Matiere.new("Sport", 			  2)
 
 
 #--- START ---#
