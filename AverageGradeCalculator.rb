@@ -79,9 +79,9 @@ class Main
 	def self.modifier_matiere(matiere)
 		puts "\nEditing: #{matiere.nom} (x#{matiere.coef})"
 	    print "New name: "
-	    matiere.nom = gets.chomp
+	    matiere.rename(gets.chomp)
 	    print "New coefficient: "
-	    matiere.coef = gets.chomp.to_i
+	    matiere.change_coef(gets.chomp.to_i)
 	    puts "\nEdit done: #{matiere.nom} (x#{matiere.coef})"
 	    puts "\n--------------------"
 	    modifier_matieres

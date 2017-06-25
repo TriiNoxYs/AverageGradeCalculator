@@ -1,5 +1,5 @@
 class Eleve
-	attr_accessor :nom, :controles, :moyennes, :moyenne_generale
+	attr_reader :nom, :controles, :moyennes, :moyenne_generale
 
 	def initialize(nom)
 		@nom = nom

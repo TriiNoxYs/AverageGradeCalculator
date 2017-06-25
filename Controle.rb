@@ -1,5 +1,5 @@
 class Controle
-	attr_accessor :matiere, :note, :coef
+	attr_reader :matiere, :note, :coef
 
 	def initialize(matiere, note, coef)
 		@matiere = matiere
