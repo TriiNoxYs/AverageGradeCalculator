@@ -45,11 +45,28 @@ class Eleve
 	    note = gets.chomp.to_f
 
 	    print "Coefficient: "
-	    coef = gets.chomp
+	    coef = gets.chomp.to_f
 
 		controle = Controle.new(matiere, note, coef)
 		puts "-> #{controle.matiere.nom} #{controle.note}/20 (x#{controle.coef})"
 		@controles << controle
+
+		Main.menu_principal
+	end
+
+	def demander_matiere_a_calculer
+		puts "\nFor wich subject do you want to calculate the average grade ?"
+		i = 0
+	    $matieres.each do |matiere|
+	    	i = i + 1
+	      	puts "#{i} - #{matiere.nom}"
+	    end
+	    puts "99 - Quit"
+
+	    print "Subject: "
+	    matiere = $matieres[gets.chomp.to_i-1]
+
+	    calculer_moyenne_matiere(matiere)
 	end
 
 	def calculer_moyenne_matiere(matiere)
@@ -65,7 +82,9 @@ class Eleve
 		moyenne_matiere += addition_notes / addition_coefs #peut etre supr et passé direct en arg
 		@moyennes[:matiere] = moyenne_matiere
 
-		return moyenne_matiere
+		#return moyenne_matiere
+		puts "Average grade in #{matiere.nom}: #{moyenne_matiere}"
+		Main.menu_principal
 	end
 
 	def calculer_moyenne_generale
@@ -94,7 +113,7 @@ class Main
 		puts "3 - Calculate subject average grade"
 		puts "4 - Calculate general average grade"
 		puts "99 - Quit"
-		print "You choice: "
+		print "Your choice: "
 		choix = gets.chomp.to_i
 
 		if choix == 1
@@ -102,7 +121,7 @@ class Main
 		elsif choix == 2
 			$eleve.ajouter_controle
 		elsif choix == 3
-			$eleve.calculer_moyenne_matiere
+			$eleve.demander_matiere_a_calculer
 		elsif choix == 4
 			$eleve.calculer_moyenne_generale
 		elsif choix == 99
